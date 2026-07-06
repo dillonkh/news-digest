@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/digest.css' | relative_url }}">
+</head>
+<body>
+  <div class="frame">
+
+    <div class="masthead">
+      <div class="title">WEEKLY NEWS DIGEST</div>
+      <div class="range">{{ page.range }}</div>
+    </div>
+
+    <p class="updated">&#128260; last updated: {{ page.updated | default: page.date | date: "%B %-d, %Y" }}</p>
+
+    <div class="content">
+      {{ content }}
+    </div>
+
+    <footer>
+      &#9632; compiled {{ page.date | date: "%B %-d, %Y" }} &#9632; window: {{ page.range }} &#9632;<br>
+      visitors: <span class="counter">{{ page.visitors | default: "0001337" }}</span><br>
+      <span class="accent">&#8734; best viewed in any browser &#8734;</span>
+    </footer>
+
+  </div>
+</body>
+</html>

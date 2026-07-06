@@ -1,0 +1,42 @@
+---
+layout: null
+title: Weekly News Digest — Archive
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/digest.css' | relative_url }}">
+</head>
+<body>
+  <div class="frame">
+
+    <div class="masthead">
+      <div class="title">WEEKLY NEWS DIGEST</div>
+      <div class="range">~ the archive ~</div>
+    </div>
+
+    <div class="content">
+      <p><span class="lead">Every week's news, digested.</span> Pick an edition below.</p>
+
+      <div class="sources">
+        <ul>
+          {% assign sorted = site.digests | sort: "date" | reverse %}
+          {% for d in sorted %}
+          <li><a href="{{ d.url | relative_url }}">{{ d.range }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      &#9632; {{ site.digests | size }} editions on file &#9632;<br>
+      visitors: <span class="counter">0001337</span><br>
+      <span class="accent">&#8734; best viewed in any browser &#8734;</span>
+    </footer>
+
+  </div>
+</body>
+</html>

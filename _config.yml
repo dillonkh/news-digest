@@ -1,0 +1,20 @@
+title: Weekly News Digest
+description: A weekly digest of US, world, tech, Arkansas, and pop-culture news.
+
+baseurl: "/news-digest"
+url: "https://dillonkh.github.io"
+
+collections:
+  digests:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: digests
+    values:
+      layout: digest
+
+sass:
+  style: compressed
