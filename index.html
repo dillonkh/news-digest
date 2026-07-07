@@ -9,7 +9,7 @@ title: Weekly News Digest — Archive
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/digest.css' | relative_url }}">
-  <script data-goatcounter="https://dillonkh.goatcounter.com/count"
+  <script data-goatcounter="{{ site.goatcounter_url }}/count"
           async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -35,10 +35,27 @@ title: Weekly News Digest — Archive
 
     <footer>
       &#9632; {{ site.digests | size }} editions on file &#9632;<br>
-      visitors: <span class="counter">0001337</span><br>
+      visitors: <span class="counter" id="gc-counter">0001337</span><br>
       <span class="accent">&#8734; best viewed in any browser &#8734;</span>
     </footer>
 
   </div>
+
+  <script>
+    (function () {
+      function pad(n) {
+        n = String(n).replace(/,/g, '');
+        while (n.length < 7) n = '0' + n;
+        return n;
+      }
+      fetch('{{ site.goatcounter_url }}/counter/TOTAL.json')
+        .then(function (r) { if (!r.ok) throw new Error('gc: bad response'); return r.json(); })
+        .then(function (data) {
+          var el = document.getElementById('gc-counter');
+          if (el) el.textContent = pad(data.count);
+        })
+        .catch(function () { /* leave placeholder on error */ });
+    })();
+  </script>
 </body>
 </html>

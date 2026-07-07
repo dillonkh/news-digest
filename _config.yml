@@ -4,6 +4,8 @@ description: A weekly digest of US, world, tech, Arkansas, and pop-culture news.
 baseurl: "/news-digest"
 url: "https://dillonkh.github.io"
 
+goatcounter_url: "https://dillonkh.goatcounter.com"
+
 collections:
   digests:
     output: true
