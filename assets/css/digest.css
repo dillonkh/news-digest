@@ -1,5 +1,5 @@
 :root {
-  --page-bg: #008080;
+  --page-bg: #dfdfdf;
   --frame-bg: #ffffff;
   --frame-border: #c0c0c0;
   --title-bg: #000080;
@@ -132,6 +132,39 @@ hr {
 }
 .biasbox h3 { border-bottom: none; }
 .biasbox p { font-size: 15px; margin: 5px 0 0; }
+
+.gauge { margin: 14px 4px 6px; }
+.gauge-bar {
+  position: relative;
+  height: 16px;
+  border: 1px solid #666;
+  border-radius: 9px;
+  background: linear-gradient(to right,
+    #0033cc 0%, #6688dd 35%, #dddddd 50%, #dd8866 65%, #cc2200 100%);
+}
+.gauge-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffff00;
+  border: 2px solid #000;
+  box-shadow: 0 0 0 1px #fff;
+}
+.gauge-ticks,
+.gauge-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  margin-top: 3px;
+  padding: 0 1px;
+}
+.gauge-ticks { color: #333; }
+.gauge-labels { color: var(--bias-border); font-weight: bold; margin-top: 1px; }
+.gauge-blurb { font-style: italic; }
 
 .sources { font-size: 14px; }
 .sources ul { margin: 4px 0 14px; padding-left: 22px; }
