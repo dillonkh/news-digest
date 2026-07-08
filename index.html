@@ -8,24 +8,26 @@ title: Weekly News Digest — Archive
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/img/favicon-32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="64x64" href="{{ '/assets/img/favicon-64.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/digest.css' | relative_url }}">
-  <script data-goatcounter="{{ site.goatcounter_url }}/count"
-          async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <div class="frame">
 
     <div class="masthead">
-      <div class="title">WEEKLY NEWS DIGEST</div>
-      <div class="range">~ the archive ~</div>
+      <img class="logo" src="{{ '/assets/img/logo.png' | relative_url }}" alt="Weekly News Digest logo">
+      <div class="title">Weekly News Digest</div>
+      <div class="range">The Archive</div>
     </div>
 
     <div class="content">
-      <p><span class="lead">Every week's news, digested.</span> Pick an edition below.</p>
+      <p>Every week's news, digested. Pick an edition below.</p>
 
       <div class="sources">
         <ul>
-          {% assign sorted = site.digests | sort: "date" | reverse %}
+          {% assign sorted = site.digests | sort: "slug" | reverse %}
           {% for d in sorted %}
           <li><a href="{{ d.url | relative_url }}">{{ d.range }}</a></li>
           {% endfor %}
@@ -34,28 +36,9 @@ title: Weekly News Digest — Archive
     </div>
 
     <footer>
-      &#9632; {{ site.digests | size }} editions on file &#9632;<br>
-      visitors: <span class="counter" id="gc-counter">0001337</span><br>
-      <span class="accent">&#8734; best viewed in any browser &#8734;</span>
+      {{ site.digests | size }} editions on file
     </footer>
 
   </div>
-
-  <script>
-    (function () {
-      function pad(n) {
-        n = String(n).replace(/,/g, '');
-        while (n.length < 7) n = '0' + n;
-        return n;
-      }
-      fetch('{{ site.goatcounter_url }}/counter/TOTAL.json')
-        .then(function (r) { if (!r.ok) throw new Error('gc: bad response'); return r.json(); })
-        .then(function (data) {
-          var el = document.getElementById('gc-counter');
-          if (el) el.textContent = pad(data.count);
-        })
-        .catch(function () { /* leave placeholder on error */ });
-    })();
-  </script>
 </body>
 </html>

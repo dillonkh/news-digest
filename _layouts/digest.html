@@ -4,19 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/img/favicon-32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="64x64" href="{{ '/assets/img/favicon-64.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/digest.css' | relative_url }}">
-  <script data-goatcounter="{{ site.goatcounter_url }}/count"
-          async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <div class="frame">
 
     <div class="masthead">
-      <div class="title">WEEKLY NEWS DIGEST</div>
+      <img class="logo" src="{{ '/assets/img/logo.png' | relative_url }}" alt="Weekly News Digest logo">
+      <div class="title">Weekly News Digest</div>
       <div class="range">{{ page.range }}</div>
+      <p class="updated">Updated {{ page.updated | default: page.date | date: "%B %-d, %Y" }}</p>
     </div>
-
-    <p class="updated">&#128260; last updated: {{ page.updated | default: page.date | date: "%B %-d, %Y" }}</p>
 
     <div class="content">
       {{ content }}
@@ -24,16 +25,17 @@
       {% if page.bias_score %}
       {% assign bias_pct = page.bias_score | plus: 7 | times: 100 | divided_by: 14.0 %}
       <div class="biasbox">
-        <h3>Media Bias Rating: {{ page.bias_score }} ({{ page.bias_label }})</h3>
+        <h3>⚖️ Media Bias Rating</h3>
+        <div class="bias-headline">
+          <span class="bias-score">{{ page.bias_score }}</span>
+          <span class="bias-label">{{ page.bias_label }}</span>
+        </div>
         <div class="gauge">
           <div class="gauge-bar">
             <div class="gauge-marker" style="left: {{ bias_pct }}%;"></div>
           </div>
-          <div class="gauge-ticks">
-            <span>&minus;7</span><span>&minus;5</span><span>&minus;3</span><span>&minus;1</span><span>+1</span><span>+3</span><span>+5</span><span>+7</span>
-          </div>
           <div class="gauge-labels">
-            <span>&#9664; left</span><span>center</span><span>right &#9654;</span>
+            <span>&minus;7 left</span><span>0</span><span>right +7</span>
           </div>
         </div>
         {% if page.bias_blurb %}<p class="gauge-blurb">{{ page.bias_blurb }}</p>{% endif %}
@@ -43,33 +45,9 @@
     </div>
 
     <footer>
-      &#9632; compiled {{ page.date | date: "%B %-d, %Y" }} &#9632; window: {{ page.range }} &#9632;<br>
-      visitors: <span class="counter" id="gc-counter">{{ page.visitors | default: "0001337" }}</span><br>
-      <span class="accent">&#8734; best viewed in any browser &#8734;</span>
+      Compiled {{ page.date | date: "%B %-d, %Y" }}
     </footer>
 
   </div>
-
-  <script>
-    (function () {
-      function pad(n) {
-        n = String(n).replace(/,/g, '');
-        while (n.length < 7) n = '0' + n;
-        return n;
-      }
-      var t = setInterval(function () {
-        if (window.goatcounter && window.goatcounter.get_data) {
-          clearInterval(t);
-          var path = window.goatcounter.get_data()['p'];
-          var el = document.getElementById('gc-counter');
-          if (!el || !path) return;
-          fetch('{{ site.goatcounter_url }}/counter/' + encodeURIComponent(path) + '.json')
-            .then(function (r) { if (!r.ok) throw new Error('gc: bad response'); return r.json(); })
-            .then(function (data) { el.textContent = pad(data.count); })
-            .catch(function () { /* leave placeholder/front-matter value on error */ });
-        }
-      }, 100);
-    })();
-  </script>
 </body>
 </html>

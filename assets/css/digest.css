@@ -1,192 +1,255 @@
+/* ============================================================
+   Weekly News Digest — Warm Minimalist Serif theme
+   Drop-in alternate for digest.css. Same class vocabulary and
+   gauge markup as the layout; presentation only.
+
+   Emoji section headers (🏛️ 🌍 💻 🌱 🎬 🔗 ⚖️) are authored in
+   the <h2> text, not here — this stylesheet works with or
+   without them.
+   ============================================================ */
+
 :root {
-  --page-bg: #dfdfdf;
-  --frame-bg: #ffffff;
-  --frame-border: #c0c0c0;
-  --title-bg: #000080;
-  --title-fg: #ffffff;
-  --title-border: #000040;
-  --accent: #ff6600;
-  --link: #0000ee;
-  --link-visited: #551a8b;
-  --link-hover-bg: #fffb90;
-  --text: #000000;
-  --muted: #555555;
-  --rule: #999999;
-  --bar-fg: #cbc7ff;
-  --history-bg: #ffffcc;
-  --history-border: #cccc66;
-  --bias-bg: #eeeeff;
-  --bias-border: #000080;
-  --footer-bg: #c0c0c0;
-  --counter-bg: #000000;
-  --counter-fg: #00ff00;
+  --page-bg: #f4efe7;
+  --card-bg: #fdfbf7;
+  --card-border: #e6ddcf;
+  --rule: #eadfce;
+  --accent-rule: #d8c7a8;
+
+  --text: #2b2620;         /* headings, strong body */
+  --body: #3a342b;         /* overview lead paragraph */
+  --body-soft: #4a443a;    /* item body text */
+  --muted: #a89a82;        /* sources, labels, dates */
+  --muted-2: #b3a690;      /* faint: ticks, footer */
+  --callout-bg: #f6eede;   /* history box */
+  --callout-fg: #6b5d44;   /* history + bias detail text */
+
+  --gauge-left: #5b8def;
+  --gauge-mid: #e8decb;
+  --gauge-right: #e8695b;
+  --gauge-dot: #2b2620;
+
   --content-width: 640px;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --serif: Georgia, "Times New Roman", Times, serif;
 }
 
 body {
   background: var(--page-bg);
-  color: var(--text);
-  font-family: "Times New Roman", Times, serif;
+  color: var(--body);
+  font-family: var(--serif);
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.65;
   margin: 0;
-  padding: 24px 12px;
+  padding: 32px 16px;
 }
 
 .frame {
   max-width: var(--content-width);
   margin: 0 auto;
-  background: var(--frame-bg);
-  border: 2px outset var(--frame-border);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 48px 44px;
 }
 
+/* ---- masthead ---- */
 .masthead {
-  background: var(--title-bg);
-  color: var(--title-fg);
-  text-align: center;
-  padding: 14px 10px;
-  border-bottom: 2px solid var(--title-border);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+}
+.masthead .logo {
+  display: block;
+  height: 56px;
+  width: auto;
+  margin-bottom: 12px;
 }
 .masthead .title {
-  font-family: "Courier New", monospace;
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
 }
 .masthead .range {
-  font-size: 15px;
-  margin-top: 4px;
+  font-size: 27px;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 8px;
+  line-height: 1.2;
 }
 
 .updated {
-  text-align: center;
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  color: #333;
-  padding: 6px;
-  background: #e0e0e0;
-  border-bottom: 1px solid var(--rule);
-  margin: 0;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted-2);
+  margin: 8px 0 0;
 }
 
-.content {
-  padding: 16px 20px;
+/* ---- content ---- */
+.content { }
+
+/* overview paragraph (first <p>, before first <hr>) */
+.content > p:first-of-type {
+  font-size: 18px;
+  color: var(--body);
+  margin: 0 0 34px;
 }
 
 h2 {
-  background: var(--title-bg);
-  color: var(--title-fg);
-  font-family: "Courier New", monospace;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 5px 10px;
-  margin: 18px 0 10px;
-  border-left: 6px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text);
+  font-weight: 700;
+  margin: 0 0 16px;
+  border-bottom: 2px solid var(--accent-rule);
+  padding-bottom: 6px;
+  display: inline-block;
 }
 
 h3 {
-  font-size: 16px;
-  font-weight: bold;
-  color: var(--title-bg);
-  border-bottom: 1px dotted var(--rule);
-  margin: 0 0 3px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 6px;
 }
 
-p { margin: 0 0 14px; }
+p {
+  font-size: 16px;
+  color: var(--body-soft);
+  margin: 0 0 8px;
+}
 
-a { color: var(--link); }
-a:visited { color: var(--link-visited); }
-a:hover { background: var(--link-hover-bg); }
+a { color: #3a6ea5; text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: #274d75; }
 
+/* hr becomes quiet spacing, not a visible line */
 hr {
   border: none;
-  border-top: 2px dashed var(--rule);
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
-.lead { font-weight: bold; }
+.lead { font-weight: 700; color: var(--text); }
 
-.item { margin-bottom: 14px; }
+.item { margin-bottom: 26px; }
 .item p:last-child { margin-bottom: 0; }
 
 .src {
-  font-style: italic;
+  font-family: var(--sans);
   font-size: 13px;
   color: var(--muted);
 }
 
+/* ---- sources list + archive index list ---- */
+.sources { font-size: 15px; }
+.sources p strong {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.sources ul {
+  list-style: none;
+  margin: 8px 0 20px;
+  padding: 0;
+}
+.sources li {
+  margin-bottom: 8px;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+.sources li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent-rule);
+}
+
+/* ---- Arkansas history callout ---- */
 .history {
-  background: var(--history-bg);
-  border: 1px solid var(--history-border);
-  padding: 8px 12px;
-  margin: 14px 0;
+  background: var(--callout-bg);
+  border-left: 3px solid var(--accent-rule);
+  padding: 14px 18px;
+  margin: 0 0 34px;
 }
-.history h3 { border-bottom: none; }
-.history p { font-size: 15px; margin: 4px 0 0; }
+.history h3 { font-size: 15px; color: var(--callout-fg); margin-bottom: 4px; }
+.history p { font-size: 15px; line-height: 1.6; color: var(--callout-fg); margin: 0; }
 
+/* ---- bias box + gauge ---- */
 .biasbox {
-  background: var(--bias-bg);
-  border: 2px dashed var(--bias-border);
-  padding: 10px 14px;
-  margin: 14px 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+  margin-top: 8px;
 }
-.biasbox h3 { border-bottom: none; }
-.biasbox p { font-size: 15px; margin: 5px 0 0; }
+.biasbox h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.biasbox p { font-size: 15px; line-height: 1.6; color: var(--callout-fg); margin: 16px 0 0; }
+.gauge-blurb { font-style: italic; }
 
-.gauge { margin: 14px 4px 6px; }
+.gauge { margin: 0; }
 .gauge-bar {
   position: relative;
-  height: 16px;
-  border: 1px solid #666;
-  border-radius: 9px;
+  height: 5px;
+  border-radius: 3px;
+  margin: 0 0 6px;
   background: linear-gradient(to right,
-    #0033cc 0%, #6688dd 35%, #dddddd 50%, #dd8866 65%, #cc2200 100%);
+    var(--gauge-left) 0%, var(--gauge-mid) 50%, var(--gauge-right) 100%);
 }
 .gauge-marker {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
-  background: #ffff00;
-  border: 2px solid #000;
-  box-shadow: 0 0 0 1px #fff;
+  background: var(--gauge-dot);
+  border: 2px solid var(--card-bg);
+  box-shadow: 0 0 0 1px var(--accent-rule);
 }
-.gauge-ticks,
 .gauge-labels {
   display: flex;
   justify-content: space-between;
-  font-family: "Courier New", monospace;
-  font-size: 10px;
-  margin-top: 3px;
-  padding: 0 1px;
-}
-.gauge-ticks { color: #333; }
-.gauge-labels { color: var(--bias-border); font-weight: bold; margin-top: 1px; }
-.gauge-blurb { font-style: italic; }
-
-.sources { font-size: 14px; }
-.sources ul { margin: 4px 0 14px; padding-left: 22px; }
-.sources li { margin-bottom: 6px; }
-
-footer {
-  background: var(--footer-bg);
-  border-top: 2px groove #ffffff;
-  text-align: center;
-  font-family: "Courier New", monospace;
+  font-family: var(--sans);
   font-size: 11px;
-  color: #333;
-  padding: 10px;
+  color: var(--muted-2);
 }
-footer .accent { color: var(--title-bg); }
 
-.counter {
-  display: inline-block;
-  background: var(--counter-bg);
-  color: var(--counter-fg);
-  padding: 2px 8px;
-  letter-spacing: 3px;
-  border: 1px solid var(--counter-fg);
-  margin-top: 4px;
+/* big numeral score — optional: wrap score in <span class="bias-score"> in layout */
+.bias-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.bias-score {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--text);
+}
+.bias-label {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* ---- footer ---- */
+footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 32px;
+  padding-top: 16px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted-2);
 }
